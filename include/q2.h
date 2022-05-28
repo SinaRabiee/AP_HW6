@@ -3,9 +3,7 @@
 
 #include <algorithm>
 #include <fstream>
-#include <functional>
 #include <iostream>
-#include <queue>
 #include <regex>
 #include <sstream>
 #include <string>
