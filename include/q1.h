@@ -7,12 +7,9 @@
 
 namespace q1 {
 
-template <typename T>
-using Func = T (*)(T);
-// Func<T> func
-
-template <typename T>
-inline double gradient_descent(double ivalue, double step, T (*func)(T))
+// template <typename T>
+// inline double gradient_descent(double ivalue, double step, T func)
+inline double gradient_descent(double ivalue, double step, std::function<double(double)> func)
 {
     size_t i {};
     while (true) {
