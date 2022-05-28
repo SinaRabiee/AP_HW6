@@ -4,19 +4,28 @@
 #include <cmath>
 #include <functional>
 #include <iostream>
+
 namespace q1 {
 
-using Func = double (*)(const double);
+template <typename T>
+using Func = T (*)(T);
+// Func<T> func
 
-double gradient_descent(double ivalue, double step, Func func)
+template <typename T>
+inline double gradient_descent(double ivalue, double step, T (*func)(T))
 {
-    for (size_t i {};; i++) {
+    size_t i {};
+    while (true) {
         double x { func(ivalue + i * step) };
         double y { func(ivalue + (i + 1) * step) };
+        if (x < y) {
+            return x;
+            break;
         }
-    std::cout << "Gradient Descent" << std::endl;
-    return 2.0;
+        i++;
+    }
 }
+
 }
 
 #endif // Q1_H

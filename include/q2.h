@@ -1,7 +1,9 @@
 #ifndef Q2_H
 #define Q2_H
 
+#include <algorithm>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <queue>
 #include <regex>
@@ -17,7 +19,6 @@ struct Patient {
         , smokes { _smokes }
         , area_q { _area_q }
         , alkhol { _alkhol }
-
     {
     }
 
@@ -28,7 +29,7 @@ struct Patient {
     size_t alkhol;
 };
 
-std::vector<Patient> read_file(std::string filename)
+inline std::vector<Patient> read_file(std::string filename)
 {
     std::vector<Patient> P {};
     std::ifstream file("lung_cancer.csv");
@@ -58,25 +59,18 @@ std::vector<Patient> read_file(std::string filename)
     }
     return P;
 }
-std::vector<Patient> sort(std::vector<Patient> P)
+
+inline bool comp(const Patient& P1, const Patient& P2)
 {
-    std::vector<Patient> new_P {};
-    struct place {
-        bool operator()(const Patient& P1, const Patient& P2) const
-        {
-            size_t x { 3 * (P1.age) + 5 * (P1.smokes) + 2 * (P1.area_q) + 4 * (P1.alkhol) };
-            size_t y { 3 * (P2.age) + 5 * (P2.smokes) + 2 * (P2.area_q) + 4 * (P2.alkhol) };
-            return x < y;
-        }
-    };
-    std::priority_queue<Patient, std::vector<Patient>, place> pq {};
-    for (auto i : P)
-        pq.push(i);
-    while (!pq.empty()) {
-        new_P.push_back(pq.top());
-        pq.pop();
-    }
-    return new_P;
+    size_t x { 3 * (P1.age) + 5 * (P1.smokes) + 2 * (P1.area_q) + 4 * (P1.alkhol) };
+    size_t y { 3 * (P2.age) + 5 * (P2.smokes) + 2 * (P2.area_q) + 4 * (P2.alkhol) };
+    return x > y;
+}
+
+inline void sort(std::vector<Patient>& P)
+{
+    std::sort(P.begin(), P.end(), comp);
 }
 }
+
 #endif // Q2_H
