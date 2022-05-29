@@ -7,22 +7,23 @@
 
 namespace q1 {
 
-// template <typename T>
-// inline double gradient_descent(double ivalue, double step, T func)
-inline double gradient_descent(double ivalue, double step, std::function<double(double)> func)
+// inline double gradient_descent(double ivalue, double step, std::function<double(double)> func)
+template <typename C, typename T>
+inline C gradient_descent(C ivalue, C step, T func)
 {
-    size_t i {};
-    while (true) {
-        double x { func(ivalue + i * step) };
-        double y { func(ivalue + (i + 1) * step) };
-        if (x < y) {
-            return x;
-            break;
+    {
+        size_t i {};
+        while (true) {
+            double x { func(ivalue + i * step) };
+            double y { func(ivalue + (i + 1) * step) };
+            if (x < y) {
+                return x;
+                break;
+            }
+            i++;
         }
-        i++;
     }
 }
-
 }
 
 #endif // Q1_H

@@ -8,11 +8,9 @@
 
 int main(int argc, char** argv)
 {
-    if (1) // make false to run unit-tests
+    if (0) // make false to run unit-tests
     {
-        int x { 10 };
-        std::function<void(int)> f_display_42 = [](int x) { std::cout << x << std::endl; };
-        f_display_42(x);
+
     } else {
         ::testing::InitGoogleTest(&argc, argv);
         std::cout << "RUNNING TESTS ..." << std::endl;

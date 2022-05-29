@@ -1,13 +1,12 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-#include <cmath>
-
 #include "q1.h"
 #include "q2.h"
 #include "q3.h"
 #include "q4.h"
-
+#include <cmath>
+/*
 TEST(HW6Test, TEST1)
 {
     auto min1 = q1::gradient_descent(0.01, 0.1, cos);
@@ -40,7 +39,7 @@ TEST(HW6Test, TEST4)
     auto min = q1::gradient_descent<double, Func>(0.0, 0.01);
     EXPECT_NEAR(min, -1.57, 0.01);
 }
-/*
+
 TEST(HW6Test, TEST5)
 {
     std::vector<q2::Patient> patients = q2::read_file("lung_cancer.csv");
@@ -101,6 +100,6 @@ TEST(HW6Test, TEST9)
     auto kalman { q4::kalman_filter(sensors) };
     EXPECT_NEAR(kalman.x, 1.102, 0.01);
     EXPECT_NEAR(kalman.y, 0.4440, 0.01);
-    // std::cout << kalman.x << ", " << kalman.y << std::endl;
+    std::cout << kalman.x << ", " << kalman.y << std::endl;
 }
 */
