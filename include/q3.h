@@ -36,7 +36,7 @@ struct comp {
 inline std::priority_queue<Flight, std::vector<Flight>, comp> gather_flights(std::string filename)
 {
     // reading file
-    std::vector<Flight> F {};
+    std::priority_queue<Flight, std::vector<Flight>, comp> F {};
     std::ifstream file(filename);
     std::stringstream buffer;
     buffer << file.rdbuf();
@@ -76,14 +76,10 @@ inline std::priority_queue<Flight, std::vector<Flight>, comp> gather_flights(std
         isCont3h >> Cont3h;
         isCont3m >> Cont3m;
         isPr >> Pr;
-        F.push_back(Flight(Fnum, (Durh * 60) + Durm, Con, (Cont1h + Cont2h + Cont3h) * 60 + Cont1m + Cont2m + Cont3m, Pr));
+        F.push(Flight(Fnum, (Durh * 60) + Durm, Con, (Cont1h + Cont2h + Cont3h) * 60 + Cont1m + Cont2m + Cont3m, Pr));
         txt = match.suffix().str();
     }
-
-    std::priority_queue<Flight, std::vector<Flight>, comp> F_new {};
-    for (auto& i : F)
-        F_new.push(i);
-    return F_new;
+    return F;
 }
 }
 

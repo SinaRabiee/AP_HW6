@@ -30,7 +30,7 @@ struct Patient {
 inline std::vector<Patient> read_file(std::string filename)
 {
     std::vector<Patient> P {};
-    std::ifstream file("lung_cancer.csv");
+    std::ifstream file(filename);
     std::stringstream buffer;
     buffer << file.rdbuf();
     std::string txt = buffer.str();

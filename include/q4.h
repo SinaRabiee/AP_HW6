@@ -38,8 +38,7 @@ struct muly {
     }
 };
 
-inline q4::Vector2D
-kalman_filter(std::vector<Sensor> sensors)
+inline q4::Vector2D kalman_filter(std::vector<Sensor> sensors)
 {
     double size { std::accumulate(sensors.begin(), sensors.end(), 0.0, [](double result, Sensor& s) { return result + s.accuracy; }) };
     double weighted_sum_x = std::accumulate(sensors.begin(), sensors.end(), 0.0, mulx()) / size;
